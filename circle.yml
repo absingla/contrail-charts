@@ -33,9 +33,9 @@ test:
         background: true
     # Wait for example app to be ready
     - curl --retry 10 --retry-delay 2 -v http://localhost:9000
-    # Run selenium tests
-    - npm run test-e2e
   override :
+      # Run selenium tests
+      - npm run test-e2e
   post:
     - killall --wait sc  # Wait for Sauce Connect to close the tunnel
 
