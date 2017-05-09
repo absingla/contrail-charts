@@ -3,6 +3,8 @@
  */
 import {ChartView} from 'coCharts'
 import {formatter} from 'commons'
+import template from './template.html'
+import './index.scss'
 
 // Complex example
 const complexData = []
@@ -20,6 +22,7 @@ for (let i = 0; i < 100; i++) {
 
 const chartConfig = {
   id: 'chartBox',
+  template,
   components: [{
     id: 'control-panel-id',
     type: 'ControlPanel',
