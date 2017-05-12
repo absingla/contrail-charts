@@ -141,7 +141,6 @@ describe('localhost:9000', function () {
       }
       browser.call(done);
     });
-
     it('Should Change Graph Show Hide By lineBarLegend legend Select By Legend Bar Label B', function (done) {
       if (browser.getValue('[data-accessor="b"] .legend-attribute input') === undefined) {
         var color = hexToRgb(browser.getCssProperty('[data-accessor="b"] .legend-attribute .color-indicator', 'background-color').parsed.hex);
@@ -164,7 +163,6 @@ describe('localhost:9000', function () {
       }
       browser.call(done);
     });
-
     it('Should Change Graph Show Hide By lineBarLegend legend Select By Legend Bar Label C', function (done) {
       if (browser.getValue('[data-accessor="c"] .legend-attribute input') === 'on') {
         var color = hexToRgb(browser.getCssProperty('[data-accessor="c"] .legend-attribute .color-indicator', 'background-color').parsed.hex);
@@ -175,7 +173,6 @@ describe('localhost:9000', function () {
       }
       browser.call(done);
     });
-
 
     it('Should Change Graph Show Hide By lineBarLegend legend Select By Legend Bar Label D False', function (done) {
       if (browser.getValue('[data-accessor="d"] .legend-attribute input') === 'on') {
@@ -211,6 +208,22 @@ describe('localhost:9000', function () {
         browser.click('[data-accessor="d"] .legend-attribute');
         expect(browser.isExisting('#chartBox .svg-wrapper svg .line-chart .line-e')).toBe(true);
       }
+      browser.call(done);
+    });
+    it('Select Color By Label A', function (done) {
+      if (browser.getValue('[data-accessor="e"] .legend-attribute input') === undefined)
+        browser.click('[data-accessor="a"] .legend-attribute');
+      browser.click('.edit-legend');
+      browser.click('[data-accessor="a"] .select--color');
+      browser.click('.switches--colors [data-color="#9edae5"]');
+      var color = hexToRgb('#9edae5');
+      var array = browser.isExisting('#chartBox .svg-wrapper svg .bar-chart rect') ? browser.getAttribute('#chartBox .svg-wrapper svg .bar-chart rect', 'fill') : [];
+      var index = array.indexOf(color);
+      expect(index).toBe(-1);
+      // var color = hexToRgb(browser.getCssProperty('[data-accessor="e"] .legend-attribute .color-indicator', 'background-color').parsed.hex);
+      // browser.click('[data-accessor="d"] .legend-attribute');
+      // expect(browser.isExisting('#chartBox .svg-wrapper svg .line-chart .line-e')).toBe(true);
+
       browser.call(done);
     });
 
