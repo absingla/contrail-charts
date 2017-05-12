@@ -59,8 +59,20 @@ describe('localhost:9000', function () {
       var isExisting = browser.isExisting('//*[@id="pie-chart-id-svg-wrapper"]');
       console.log(isExisting);
       expect(isExisting).toBe(true);
+
+
       browser.call(done);
     });
+
+    it('should not show console errors', function (done) {
+        browser.click('/html/body/section/div/nav/ul/li[2]/a');
+        var isExisting = browser.isExisting('//*[@id="lineBarLinks"]/li[5]/a');
+      console.log(isExisting);
+      var opacity = browser.click('//*[@id="lineBarLinks"]/li[5]/a');
+      console.log(browser.log("browser"));
+      browser.call(done);
+    });
+
   });
 
 });
