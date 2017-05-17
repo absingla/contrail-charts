@@ -18,6 +18,7 @@
     "lint:src": "eslint src/** || true",
     "lint:examples": "eslint examples/** || true",
     "lint:e2e": "eslint tests/ || true",
+    "test-e2e" : "wdio wdio.conf.js",
     "doc": "jsdoc src -r -d docs"
   },
   "license": "Apache-2.0",

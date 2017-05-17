@@ -20,6 +20,9 @@ dependencies:
 test:
   pre:
     - npm install -g phantomjs-prebuilt
+    - npm install -g webdriverio 
+    - npm install  -g wdio-sauce-service 
+    - npm install -g wdio-jasmine-framework
   override:
     - npm run test-headless
     - cd sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --readyfile ~/sauce_is_ready:
@@ -32,6 +35,7 @@ test:
     # Wait for example app to be ready
     - curl --retry 10 --retry-delay 2 -v http://localhost:9000
     # TODO Run selenium tests
+    - npm run test-e2e
   post:
     - killall --wait sc  # Wait for Sauce Connect to close the tunnel
 
