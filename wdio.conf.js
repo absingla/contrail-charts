@@ -256,3 +256,6 @@ exports.config = {
     // onComplete: function(exitCode) {
     // }
 }
+require("babel-core/register")({
+    presets: ['es2015']
+});
