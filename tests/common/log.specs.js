@@ -11,6 +11,7 @@ export class LogCheck {
           return obj.level
         }).indexOf('SEVERE')
         expect(index).toBe(-1)
+        browser.call(done)
       })
     })
   }
