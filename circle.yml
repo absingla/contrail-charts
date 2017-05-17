@@ -21,7 +21,7 @@ test:
   pre:
     - npm install -g phantomjs-prebuilt
     - npm install -g webdriverio 
-    - npm install  -g wdio-sauce-service 
+    - npm install -g wdio-sauce-service 
     - npm install -g wdio-jasmine-framework
   override:
     - npm run test-headless
