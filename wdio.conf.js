@@ -120,6 +120,9 @@ exports.config = {
     // commands. Instead, they hook themselves up into the test process.
     // services: [],//
     services: ['sauce'],
+    // user: 'abhishekrathore1',
+    // key: '6ebc7f9a-9510-4ce4-a6d3-3790dbfc77a4',
+    // sauceConnect: true,
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: http://webdriver.io/guide/testrunner/frameworks.html

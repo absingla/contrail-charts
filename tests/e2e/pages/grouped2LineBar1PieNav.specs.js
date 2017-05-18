@@ -15,7 +15,8 @@ describe('localhost:9000', function () {
     it('Should not any SEVER error in console', (done) => {
       var logCheck = new LogCheck()
       var index = logCheck.checkLogs('http://localhost:9000/#grouped2LineBar1PieNav', 'grouped2LineBar1PieNav')
-      expect(index).toBe(-1)
+      expect(index).toBe(-1);
+      browser.call(done);
     })
   })
 });
