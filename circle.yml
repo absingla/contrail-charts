@@ -23,7 +23,7 @@ test:
     - npm install -g webdriverio 
     - npm install -g wdio-sauce-service 
     - npm install -g wdio-jasmine-framework
-  override:
+  
     - npm run test-headless
     - cd sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --readyfile ~/sauce_is_ready:
         background: true
@@ -34,6 +34,7 @@ test:
         background: true
     # Wait for example app to be ready
     - curl --retry 10 --retry-delay 2 -v http://localhost:9000
+  override:
     # TODO Run selenium tests
     - npm run test-e2e
   post:
