@@ -10,14 +10,13 @@
 //   afterAll(function (done) {
 //     browser.end(done);
 //   });
-//   describe('Juniper Home test case for lineBarControls Page', () => {
+//   describe('Juniper Home test case for lineBarStackedBar Page', () => {
 //     it('Should not any SEVER error in console', (done) => {
 //       var logCheck = new LogCheck()
-//       var index = logCheck.checkLogs('http://localhost:9000/#lineBarControls', 'lineBarControls')
+//       var index = logCheck.checkLogs('http://localhost:9000/#lineBarStackedBar', 'lineBarStackedBar')
 //       expect(index).toBe(-1)
 //       browser.call(done);
 //     })
 //   })
-// });  
-
+// })
 
