@@ -4,6 +4,7 @@ export class LogCheck {
   checkLogs(url, page_params) {
     browser
       .url(url)
+    browser.timeouts('implicit', 10000);
     var logs = browser.log('browser')
     console.log("logs===============================");
     console.log(logs)
