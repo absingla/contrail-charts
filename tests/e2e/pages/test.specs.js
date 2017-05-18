@@ -11,7 +11,14 @@ describe('Testing jasmine on circle CI', function () {
   });
   describe('Jasmine Test cases', () => {
     it('jasmine test case to be passed', (done) => {
-      expect(1).toBe(1);
+      browser
+        .url('http://localhost:9000/#lineBarStackedBar');
+      //browser.timeouts('implicit', 5000);
+      var logs = browser.log('browser');
+      var index = logs.value.map(function (obj) {
+        return obj.level
+      }).indexOf('SEVERE');
+      expect(index).toBe(-1);
       browser.call(done);
     })
   })
