@@ -58,8 +58,11 @@ export default class BrushView extends ChartView {
         .endAngle((d, i) => { return i ? Math.PI : -Math.PI }))
     this.d3.call(this._brush)
 
-    const brushGroup = this.d3.transition().ease(d3Ease.easeLinear).duration(this.config.duration)
-    this._brush.move(brushGroup, this.config.selection)
+    if (_.isEmpty(this.config.selection)) this._brush.move(this.d3, null)
+    else {
+      const brushGroup = this.d3.transition().ease(d3Ease.easeLinear).duration(this.config.duration)
+      this._brush.move(brushGroup, this.config.selection)
+    }
   }
 
   show (selection) {
@@ -67,7 +70,10 @@ export default class BrushView extends ChartView {
     this.d3.selectAll(this.selectors.unselected)
       .classed('hide', false)
       .attr('x', d => (d.type === 'w' ? xRange[0] : selection[1]))
-      .attr('width', d => (d.type === 'w' ? selection[0] - xRange[0] : xRange[1] - selection[1]))
+      .attr('width', d => {
+        const length = d.type === 'w' ? selection[0] - xRange[0] : xRange[1] - selection[1]
+        return length > 0 ? length : 0
+      })
 
     this.d3.selectAll(this.selectors.handle)
       .classed('hide', false)

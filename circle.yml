@@ -11,7 +11,6 @@ dependencies:
     - ~/.npm
   override:
     - npm prune && npm install
-    - npm run build
     - npm run lint
   post:
     - wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz
@@ -19,17 +18,24 @@ dependencies:
 
 test:
   pre:
+    - npm run build
   override:
     - cd sc-*-linux && ./bin/sc --user $SAUCE_USERNAME --api-key $SAUCE_ACCESS_KEY --readyfile ~/sauce_is_ready:
         background: true
     # Wait for tunnel to be ready
     - while [ ! -e ~/sauce_is_ready ]; do sleep 1; done
-    # Start the example app. TODO Create npm start target
-    - npm run dev:
+    - npm start:
+        background: true
+    # Wait for webpack build app and start server
+    - curl --retry 10 --retry-delay 2 -v http://localhost:8080
+
+    # Run unit tests on SauceLabs
+    - npm run test:unit
+
+    - npm run start:examples:
         background: true
     # Wait for example app to be ready
-    - curl --retry 10 --retry-delay 2 -v http://localhost:9000
-    # TODO Run selenium tests
+    - curl --retry 10 --retry-delay 2 -v http://localhost:8081
+    - npm run test:e2e
   post:
     - killall --wait sc  # Wait for Sauce Connect to close the tunnel
-

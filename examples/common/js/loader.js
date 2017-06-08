@@ -7,14 +7,14 @@ import '../sass/contrail-charts-examples.scss'
 import _ from 'lodash'
 // LineBar
 import legend from '../../linebar-chart/legend'
-//import controls from '../../linebar-chart/control-panel'
+// import controls from '../../linebar-chart/control-panel'
 import timeline from '../../linebar-chart/timeline'
 import tooltips from '../../linebar-chart/tooltip'
 import stackedBar from '../../linebar-chart/stacked-bar-chart'
 import groupedBar from '../../linebar-chart/grouped-bar-chart'
 import liveData from '../../linebar-chart/live'
 // Scatter
-//import scatterPlotBuckets from '../../bubble-chart/bucketization'
+// import scatterPlotBuckets from '../../bubble-chart/bucketization'
 import shapes from '../../bubble-chart/multiple-shapes'
 import map from '../../bubble-chart/map'
 // Radial
@@ -27,13 +27,13 @@ import twoLineBarOnePieNav from '../../grouped-chart/linebar-pie-nav'
 
 import sankeyChart from '../../advance-chart/sankey'
 // Single
-//import singleLine from '../../single/single-line'
-//import singleStackedBar from '../../single/single-stacked-bar'
-//import singleGroupedBar from '../../single/single-grouped-bar'
-//import singleArea from '../../single/single-area'
-//import singleScatterPlot from '../../single/single-scatter-plot'
-//import singlePie from '../../single/single-pie'
-//import singleComposite from '../../single/single-composite-y'
+// import singleLine from '../../single/single-line'
+// import singleStackedBar from '../../single/single-stacked-bar'
+// import singleGroupedBar from '../../single/single-grouped-bar'
+// import singleArea from '../../single/single-area'
+// import singleScatterPlot from '../../single/single-scatter-plot'
+// import singlePie from '../../single/single-pie'
+// import singleComposite from '../../single/single-composite-y'
 /**
  * structure of an example:
  * 'example title': {
@@ -46,9 +46,9 @@ const allExamples = {
     'Legend': {
       view: legend,
     },
-    //'Controls': {
-      //view: controls,
-    //},
+    // 'Controls': {
+      // view: controls,
+    // },
     'Timeline': {
       view: timeline,
     },
@@ -72,9 +72,9 @@ const allExamples = {
     }
   },
   'bubble': {
-    //'Buckets': {
-      //view: scatterPlotBuckets,
-    //},
+    // 'Buckets': {
+      // view: scatterPlotBuckets,
+    // },
     'Shapes': {
       view: shapes,
     },
@@ -83,42 +83,42 @@ const allExamples = {
     },
   },
   'radial': {
+    'Dendrogram': {
+      view: dendrogramChart,
+    },
     'Pie Chart': {
       view: pieChart,
     },
-    'Dendrogram': {
-      view: dendrogramChart,
-    }
   },
   'area': {
     'Basic': {
       view: areaBasic,
     }
   },
-  //'single': {
-    //'Line Chart': {
-      //view: singleLine,
-    //},
-    //'Grouped Bar Chart': {
-      //view: singleGroupedBar,
-    //},
-    //'Stacked Bar Chart': {
-      //view: singleStackedBar,
-    //},
-    //'Area Chart': {
-      //view: singleArea,
-    //},
-    //'Scatter Plot': {
-      //view: singleScatterPlot,
-    //},
-    //'Pie Chart': {
-      //view: singlePie,
-      //desc: `After 2 seconds the chart is set with changed config and then updated with new data`,
-    //},
-    //'Composite Y Chart': {
-      //view: singleComposite,
-    //},
-  //},
+  // 'single': {
+    // 'Line Chart': {
+      // view: singleLine,
+    // },
+    // 'Grouped Bar Chart': {
+      // view: singleGroupedBar,
+    // },
+    // 'Stacked Bar Chart': {
+      // view: singleStackedBar,
+    // },
+    // 'Area Chart': {
+      // view: singleArea,
+    // },
+    // 'Scatter Plot': {
+      // view: singleScatterPlot,
+    // },
+    // 'Pie Chart': {
+      // view: singlePie,
+      // desc: `After 2 seconds the chart is set with changed config and then updated with new data`,
+    // },
+    // 'Composite Y Chart': {
+      // view: singleComposite,
+    // },
+  // },
   'grouped': {
     'Navigation': {
       view: navigation,
@@ -180,15 +180,20 @@ function createLink (example) {
   const chartType = example.category || ''
   const view = example.view
   const cleaned = encodeURIComponent(example.title.replace(/\s/g, ''))
-  const link = `<a class="${chartType}${cleaned}" href="#${chartType}${cleaned}">
+  const link = `<a class="example-link ${chartType}${cleaned}" href="#${chartType}${cleaned}">
     <span class="nav-text">${example.title}</span>
     </a>`
   const $link = $(link)
-  if (view.type === 'RJS') {
-    $link.click(e => _initRJS(example))
-  } else {
-    $link.click(e => _viewRenderInit(example))
-  }
+  $link.click(e => {
+    $('.example-link').removeClass('active')
+    $link.addClass('active')
+
+    if (view.type === 'RJS') {
+      _initRJS(example)
+    } else {
+      _viewRenderInit(example)
+    }
+  })
   return $link
 }
 
@@ -212,5 +217,5 @@ function _initRJS (example) {
   }
 }
 
-const exampleName = window.location.hash.substr(1) || 'groupedNavigation'
+const exampleName = window.location.hash.substr(1) || 'lineBarLegend'
 $('.' + exampleName).find('span').click()

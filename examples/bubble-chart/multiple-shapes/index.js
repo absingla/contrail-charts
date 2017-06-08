@@ -3,6 +3,7 @@
  */
 import {composites, Util} from 'contrail-charts'
 import {formatter, _c, fixture} from 'commons'
+import './index.scss'
 
 const data = fixture({
   length: 20,
@@ -37,6 +38,7 @@ const config = {
     config: {
       legend: 'legend-id',
       bucket: 'bucket-id',
+      update: ['navigation-id'],
       height: 450,
       plot: {
         x: {
@@ -50,10 +52,10 @@ const config = {
             chart: 'ScatterPlot',
             size: {
               accessor: 'group.size1',
-              range: [100, 1000],
+              range: [200, 100],
             },
             // this is a circle symbol from fontawesome
-            shape: bubbleShapes.circleFill,
+            // shape: bubbleShapes.circleFill,
             color: d => colorScheme[0],
             axis: 'y1',
             tooltip: 'tooltip-id',
@@ -63,7 +65,7 @@ const config = {
             chart: 'ScatterPlot',
             size: {
               accessor: 'size2',
-              range: [100, 500],
+              range: [400, 2000],
             },
             color: colorScheme[5],
             shape: bubbleShapes.cloud,
@@ -75,7 +77,7 @@ const config = {
             chart: 'ScatterPlot',
             size: {
               accessor: 'size2',
-              range: [100, 500],
+              range: [400, 2000],
             },
             shape: bubbleShapes.network,
             color: d => d.data3 > 80 ? colorScheme[9] : colorScheme[8],
@@ -137,7 +139,7 @@ const config = {
     type: 'Bucket',
     config: {
       range: [500, 800],
-      shape: bubbleShapes.square,
+      shape: bubbleShapes.bucket,
       tooltip: 'tooltip-bucket',
     }
   }, {
